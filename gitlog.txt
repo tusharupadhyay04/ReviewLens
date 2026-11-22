@@ -1,0 +1,107 @@
+﻿commit 46476c1eb3e66fc61fccd3f0ee6352646751d838
+Author: Tushar Upadhyay <tusharupadhyay2804@gmail.com>
+Date:   2026-11-22 17:06:27 +0530
+
+    feat: add Breadcrumb navigation component for deep pages
+    
+    - Shows Home > Products > Product Name trail
+    - Dark mode compatible, hover violet highlight
+    - Renders on all pages except root dashboard
+
+commit 06660ae9a9f1b3d7bb0d204a3509acbf6e6d6cd0
+Author: Tushar Upadhyay <tusharupadhyay2804@gmail.com>
+Date:   2026-11-22 17:05:44 +0530
+
+    refactor: clean up unused imports in ProductDetail page
+
+commit c12c3f08bb0bb6d2e5e90ad0841a82f3351781a9
+Author: Tushar Upadhyay <tusharupadhyay2804@gmail.com>
+Date:   2026-11-22 17:05:26 +0530
+
+    feat: add email format and password strength validation to auth
+    
+    - Validate email with regex before hitting the DB
+    - Enforce minimum 6 character password requirement
+    - Return clear error messages for both validations
+
+commit 538e4aa056f221588d85250e938efc8d91e656c6
+Author: Tushar Upadhyay <tusharupadhyay2804@gmail.com>
+Date:   2026-11-22 17:05:11 +0530
+
+    perf: add compound indexes to Review model for faster queries
+    
+    - Index on status, needs_reply, ratingMismatch for dashboard filters
+    - Add comment to User model for clarity
+    - Improves query performance for large datasets
+
+commit 99bfc574767ddebb9ab48ecf3f34d9aa5166838d
+Author: Tushar Upadhyay <tusharupadhyay2804@gmail.com>
+Date:   2026-11-22 17:04:52 +0530
+
+    docs: improve .env.example with Atlas URI and production notes
+    
+    - Add MongoDB Atlas URI example with comments
+    - Document all env vars with descriptions
+    - Add production JWT_SECRET warning
+    - Update GROQ_MODEL to working qwen/qwen3.8-27b
+
+commit f7e6786b1626a77bd4ba463132a742a80df40396
+Author: Tushar Upadhyay <tusharupadhyay2804@gmail.com>
+Date:   2026-11-22 17:04:43 +0530
+
+    style: improve ProtectedRoute loading screen
+    
+    - Full-screen dark gradient loader while checking auth
+    - Animated spinner with ReviewLens branding
+    - Smooth transition instead of blank flash on page load
+
+commit eaf01d5106041479efc123d41ed9e74059cf2ef0
+Author: Tushar Upadhyay <tusharupadhyay2804@gmail.com>
+Date:   2026-11-22 16:58:12 +0530
+
+    fix: improve Groq client init with API key validation warning
+    
+    - Warn to console when GROQ_API_KEY is missing
+    - Prevents silent failures in production
+
+commit 1d20c4257840d7f51aa1a3836ea0a13f84f93f1a
+Author: Tushar Upadhyay <tusharupadhyay2804@gmail.com>
+Date:   2026-11-22 16:57:52 +0530
+
+    feat: add StatsWidget showing historical DB stats
+    
+    - Fetches all-time insights from /api/reviews/insights
+    - Shows positive/neutral/negative/needs-reply totals
+    - Displays in Dashboard above upload zone
+    - Only renders when DB has analysed reviews
+
+commit cf5ab9421e17baa111311f4db1c3e139b5fa54f5
+Author: Tushar Upadhyay <tusharupadhyay2804@gmail.com>
+Date:   2026-11-22 16:57:18 +0530
+
+    feat: add Products page with detailed stats per product
+    
+    - New /products route with ProductsPage component
+    - Shows all products from analysed reviews
+    - Sentiment score ring, bar chart per product
+    - Average rating, needs-reply count
+    - Click-through to per-product detail page
+
+commit 0f48084f663cdef2618be446c93a2d583f2e26ee
+Author: Tushar Upadhyay <tusharupadhyay2804@gmail.com>
+Date:   2026-11-22 16:48:05 +0530
+
+    feat: initial ReviewLens full-stack app
+    
+    - React.js frontend with Vite + TailwindCSS dark mode
+    - Node.js + Express backend with JWT auth
+    - MongoDB with Mongoose for data persistence
+    - Groq AI (qwen/qwen3.8-27b) for sentiment analysis
+    - CSV upload with auto column detection
+    - Batch processing with exponential backoff retry
+    - SHA-256 deduplication and MongoDB caching
+    - Prompt injection defence
+    - Rating vs sentiment mismatch detection
+    - Hinglish/Hindi review support
+    - 23 unit tests (csvParser, schemaValidator, retryLogic)
+    - Docker + docker-compose support
