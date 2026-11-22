@@ -9,21 +9,16 @@ const signToken = (id) => jwt.sign({ id }, JWT_SECRET, { expiresIn: '7d' });
 
 // POST /api/auth/register
 router.post('/register', async (req, res) => {
-// Validate email format
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(email)) {
-    return res.status(400).json({ error: 'Invalid email format' });
-  }
-
-  // Validate password strength
-  if (password.length < 6) {
-    return res.status(400).json({ error: 'Password must be at least 6 characters' });
-  }
-
   try {
     const { name, email, password } = req.body;
+
     if (!name || !email || !password)
       return res.status(400).json({ error: 'All fields are required' });
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email))
+      return res.status(400).json({ error: 'Invalid email format' });
+
     if (password.length < 6)
       return res.status(400).json({ error: 'Password must be at least 6 characters' });
 
@@ -44,19 +39,9 @@ router.post('/register', async (req, res) => {
 
 // POST /api/auth/login
 router.post('/login', async (req, res) => {
-// Validate email format
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(email)) {
-    return res.status(400).json({ error: 'Invalid email format' });
-  }
-
-  // Validate password strength
-  if (password.length < 6) {
-    return res.status(400).json({ error: 'Password must be at least 6 characters' });
-  }
-
   try {
     const { email, password } = req.body;
+
     if (!email || !password)
       return res.status(400).json({ error: 'Email and password are required' });
 
@@ -75,17 +60,6 @@ router.post('/login', async (req, res) => {
 
 // GET /api/auth/me
 router.get('/me', async (req, res) => {
-// Validate email format
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  if (!emailRegex.test(email)) {
-    return res.status(400).json({ error: 'Invalid email format' });
-  }
-
-  // Validate password strength
-  if (password.length < 6) {
-    return res.status(400).json({ error: 'Password must be at least 6 characters' });
-  }
-
   try {
     const auth = req.headers.authorization;
     if (!auth?.startsWith('Bearer ')) return res.status(401).json({ error: 'No token' });
