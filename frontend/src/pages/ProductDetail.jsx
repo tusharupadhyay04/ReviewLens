@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams, useLocation, Link } from 'react-router-dom';
-import { ArrowLeft, TrendingUp, TrendingDown } from 'lucide-react';
+import { ArrowLeft, TrendingUp, TrendingDown, Star, AlertTriangle, MessageCircle } from 'lucide-react';
 import { PieChart, Pie, Cell, Tooltip, Legend, ResponsiveContainer, BarChart, Bar, XAxis, YAxis, CartesianGrid } from 'recharts';
 import ReviewsTable from '../components/ReviewsTable.jsx';
 
