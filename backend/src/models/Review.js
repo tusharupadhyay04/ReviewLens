@@ -39,6 +39,9 @@ const reviewSchema = new mongoose.Schema({
 
 reviewSchema.index({ product: 1 });
 reviewSchema.index({ sentiment: 1 });
+reviewSchema.index({ status: 1 });
 reviewSchema.index({ uploadSession: 1 });
+reviewSchema.index({ needs_reply: 1 });
+reviewSchema.index({ ratingMismatch: 1 });
 
 export default mongoose.model('Review', reviewSchema);
