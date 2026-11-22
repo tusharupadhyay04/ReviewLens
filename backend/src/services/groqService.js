@@ -6,7 +6,13 @@ dotenv.config();
 // Lazy singleton so tests that only use validateSchema don't need a real API key
 let _groq = null;
 const getGroq = () => {
-  if (!_groq) _groq = new Groq({ apiKey: process.env.GROQ_API_KEY || 'placeholder' });
+  if (!_groq) {
+    const apiKey = process.env.GROQ_API_KEY || 'placeholder';
+    if (apiKey === 'placeholder') {
+      console.warn('⚠️  GROQ_API_KEY not set – AI analysis will fail');
+    }
+    _groq = new Groq({ apiKey });
+  }
   return _groq;
 };
 
